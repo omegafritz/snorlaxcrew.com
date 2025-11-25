@@ -1,0 +1,229 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Snorlax Crew 3D Printing - Custom Orders & Gallery</title>
+    <!-- Load Tailwind CSS -->
+    <script src="https://cdn.tailwindcss.com"></script>
+    <!-- Set Font to Inter -->
+    <style>
+        body { font-family: 'Inter', sans-serif; }
+    </style>
+</head>
+<body class="bg-gray-50 text-gray-800">
+
+    <!-- Navigation Bar -->
+    <header class="sticky top-0 bg-white shadow-md z-10">
+        <nav class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 py-4 flex justify-between items-center">
+            <h1 class="text-3xl font-extrabold text-indigo-700">
+                Snorlax Crew <span class="text-gray-500 text-base font-medium">3D Prints</span>
+            </h1>
+            <div class="flex space-x-6">
+                <a href="#gallery" class="text-gray-600 hover:text-indigo-700 transition duration-150 font-medium">Gallery</a>
+                <a href="#order" class="text-gray-600 hover:text-indigo-700 transition duration-150 font-medium">Place Order</a>
+                <a href="#payment" class="text-gray-600 hover:text-indigo-700 transition duration-150 font-medium">Payment Info</a>
+            </div>
+        </nav>
+    </header>
+
+    <main>
+        <!-- Hero Section -->
+        <section id="home" class="py-20 bg-indigo-50">
+            <div class="max-w-4xl mx-auto text-center px-4">
+                <h2 class="text-5xl font-extrabold text-indigo-900 mb-4 leading-tight">
+                    Bring Your Designs to Life
+                </h2>
+                <p class="text-xl text-indigo-600 mb-8">
+                    High-quality 3D printing services for prototypes, custom parts, and fun projects. Fast, reliable, and detailed prints.
+                </p>
+                <a href="#order" class="px-8 py-3 bg-indigo-700 text-white font-semibold rounded-lg shadow-xl hover:bg-indigo-600 transition duration-300 transform hover:scale-105">
+                    Start Your Custom Order Today
+                </a>
+            </div>
+        </section>
+
+        <!-- Gallery Section -->
+        <section id="gallery" class="py-16 bg-white">
+            <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+                <h2 class="text-4xl font-bold text-center text-gray-900 mb-12">Printed Creations Gallery</h2>
+
+                <div class="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-8">
+                    <!-- Gallery Item 1 -->
+                    <div class="bg-gray-100 rounded-xl shadow-lg overflow-hidden transform hover:scale-[1.02] transition duration-300">
+                        <img src="https://placehold.co/600x400/312e81/ffffff?text=Detailed+Miniature" onerror="this.src='https://placehold.co/600x400/312e81/ffffff?text=Detailed+Miniature'" alt="Detailed Miniature Print" class="w-full h-48 object-cover">
+                        <div class="p-5">
+                            <h3 class="text-xl font-semibold text-gray-900 mb-2">Articulated Dragon</h3>
+                            <p class="text-gray-600">Printed in durable PLA+ filament. Perfect for display.</p>
+                        </div>
+                    </div>
+                    <!-- Gallery Item 2 -->
+                    <div class="bg-gray-100 rounded-xl shadow-lg overflow-hidden transform hover:scale-[1.02] transition duration-300">
+                        <img src="https://placehold.co/600x400/1e3a8a/ffffff?text=Functional+Prototype" onerror="this.src='https://placehold.co/600x400/1e3a8a/ffffff?text=Functional+Prototype'" alt="Functional Prototype Print" class="w-full h-48 object-cover">
+                        <div class="p-5">
+                            <h3 class="text-xl font-semibold text-gray-900 mb-2">Custom Phone Mount</h3>
+                            <p class="text-gray-600">High-strength PETG for automotive use. Custom dimensions.</p>
+                        </div>
+                    </div>
+                    <!-- Gallery Item 3 -->
+                    <div class="bg-gray-100 rounded-xl shadow-lg overflow-hidden transform hover:scale-[1.02] transition duration-300">
+                        <img src="https://placehold.co/600x400/4c1d95/ffffff?text=Cosplay+Prop" onerror="this.src='https://placehold.co/600x400/4c1d95/ffffff?text=Cosplay+Prop'" alt="Cosplay Prop Print" class="w-full h-48 object-cover">
+                        <div class="p-5">
+                            <h3 class="text-xl font-semibold text-gray-900 mb-2">Helmet Visor Frame</h3>
+                            <p class="text-gray-600">Lightweight ABS material, ready for sanding and painting.</p>
+                        </div>
+                    </div>
+                </div>
+                <div class="text-center mt-10">
+                    <p class="text-indigo-600 font-medium">See something you like? Reference it in your order!</p>
+                </div>
+            </div>
+        </section>
+
+        <!-- Order Form Section -->
+        <section id="order" class="py-16 bg-gray-50">
+            <div class="max-w-3xl mx-auto px-4 sm:px-6 lg:px-8">
+                <h2 class="text-4xl font-bold text-center text-gray-900 mb-10">Place Your Custom Order</h2>
+                
+                <div id="order-message" class="hidden p-4 mb-6 rounded-lg text-center font-semibold text-sm transition-all duration-500"></div>
+
+                <form id="order-form" class="bg-white p-8 rounded-xl shadow-2xl border border-gray-200">
+                    <div class="grid grid-cols-1 gap-6 sm:grid-cols-2">
+                        <!-- Name -->
+                        <div>
+                            <label for="name" class="block text-sm font-medium text-gray-700">Full Name</label>
+                            <input type="text" id="name" name="name" required class="mt-1 block w-full rounded-lg border-gray-300 shadow-sm focus:border-indigo-500 focus:ring-indigo-500 p-3 border">
+                        </div>
+                        <!-- Email -->
+                        <div>
+                            <label for="email" class="block text-sm font-medium text-gray-700">Email Address</label>
+                            <input type="email" id="email" name="email" required class="mt-1 block w-full rounded-lg border-gray-300 shadow-sm focus:border-indigo-500 focus:ring-indigo-500 p-3 border">
+                        </div>
+                    </div>
+
+                    <div class="mt-6">
+                        <label for="file_link" class="block text-sm font-medium text-gray-700">3D File Link (STL, OBJ, etc.)</label>
+                        <input type="url" id="file_link" name="file_link" placeholder="e.g., Google Drive, Dropbox, Thingiverse URL" required class="mt-1 block w-full rounded-lg border-gray-300 shadow-sm focus:border-indigo-500 focus:ring-indigo-500 p-3 border">
+                        <p class="mt-2 text-xs text-gray-500">Please ensure the link is publicly accessible for viewing/download.</p>
+                    </div>
+                    
+                    <div class="mt-6">
+                        <label for="description" class="block text-sm font-medium text-gray-700">Project Description & Requirements</label>
+                        <textarea id="description" name="description" rows="4" placeholder="Describe the size, color preference, material (PLA, PETG, etc.), and intended use." required class="mt-1 block w-full rounded-lg border-gray-300 shadow-sm focus:border-indigo-500 focus:ring-indigo-500 p-3 border"></textarea>
+                    </div>
+
+                    <div class="mt-8 text-center">
+                        <button type="submit" class="w-full sm:w-auto px-10 py-3 bg-indigo-700 text-white font-semibold rounded-lg shadow-lg hover:bg-indigo-600 transition duration-300 transform hover:scale-[1.02]" id="submit-button">
+                            Submit Order Request
+                        </button>
+                    </div>
+                    <p class="text-xs text-center text-gray-500 mt-4">This submits a request only. I will email you a final quote and payment details shortly.</p>
+                </form>
+            </div>
+        </section>
+
+        <!-- Payment Info Section -->
+        <section id="payment" class="py-16 bg-indigo-100">
+            <div class="max-w-3xl mx-auto px-4 sm:px-6 lg:px-8">
+                <h2 class="text-4xl font-bold text-center text-indigo-900 mb-10">Payment Information</h2>
+                <div class="bg-white p-8 rounded-xl shadow-2xl border border-indigo-300">
+                    <p class="text-lg text-center text-gray-700 mb-6 font-medium">
+                        **We do not process payments directly on this website.** Once you receive your quote, please pay using one of the methods below.
+                    </p>
+
+                    <div class="space-y-6">
+                        <!-- Venmo Details -->
+                        <div class="p-5 bg-indigo-50 border-l-4 border-indigo-600 rounded-lg">
+                            <h3 class="text-2xl font-bold text-indigo-800 mb-2">Venmo</h3>
+                            <p class="text-gray-700">
+                                Send payment to the username below. Please include your **Full Name** and **Order ID** (provided in the quote email) in the memo.
+                            </p>
+                            <div class="mt-3 bg-white p-3 rounded-md border border-indigo-200 inline-block">
+                                <span class="font-mono text-xl text-indigo-700">@SnorlaxCrewPrint</span>
+                            </div>
+                        </div>
+
+                        <!-- Zelle Details -->
+                        <div class="p-5 bg-indigo-50 border-l-4 border-indigo-600 rounded-lg">
+                            <h3 class="text-2xl font-bold text-indigo-800 mb-2">Zelle</h3>
+                            <p class="text-gray-700">
+                                Use Zelle to send money directly from your banking app. Use the email below as the recipient.
+                            </p>
+                            <div class="mt-3 bg-white p-3 rounded-md border border-indigo-200 inline-block">
+                                <span class="font-mono text-xl text-indigo-700">snorlaxcrew.payments@email.com</span>
+                            </div>
+                        </div>
+                    </div>
+                    
+                    <p class="text-sm text-center text-gray-500 mt-8">
+                        **Note:** Orders will only begin production after payment confirmation.
+                    </p>
+                </div>
+            </div>
+        </section>
+
+        <!-- Contact/Footer -->
+        <footer class="bg-gray-900 text-white py-8 mt-12">
+            <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 text-center">
+                <p>&copy; 2025 Snorlax Crew 3D Printing. All Rights Reserved.</p>
+                <p class="text-sm text-gray-400 mt-2">Questions? Email: info@snorlaxcrew.com</p>
+            </div>
+        </footer>
+
+    </main>
+
+    <script>
+        const form = document.getElementById('order-form');
+        const messageBox = document.getElementById('order-message');
+        const submitButton = document.getElementById('submit-button');
+
+        form.addEventListener('submit', function(e) {
+            e.preventDefault();
+
+            submitButton.disabled = true;
+            submitButton.textContent = 'Submitting...';
+            
+            // Collect form data (for simulation, you would send this to a backend like Google Forms or a server)
+            const formData = {
+                name: document.getElementById('name').value,
+                email: document.getElementById('email').value,
+                file_link: document.getElementById('file_link').value,
+                description: document.getElementById('description').value
+            };
+
+            // In a real application, you would use fetch() to send this data.
+            // Since this is a static site and you are not using a backend, we will
+            // simulate success and provide instructions for the user.
+
+            // Simulate a successful submission after a delay
+            setTimeout(() => {
+                // Display Success Message
+                messageBox.classList.remove('hidden', 'bg-red-100', 'text-red-800', 'border-red-400');
+                messageBox.classList.add('bg-green-100', 'text-green-800', 'border-green-400', 'border');
+                messageBox.innerHTML = `
+                    <p class="font-bold">Order Request Received!</p>
+                    <p>Thank you, ${formData.name}. Please check your email (${formData.email}) soon for your custom quote and final payment instructions.</p>
+                `;
+
+                // Reset form fields
+                form.reset();
+
+                // Re-enable button
+                submitButton.disabled = false;
+                submitButton.textContent = 'Submit Order Request';
+                
+                // Hide message after 10 seconds
+                setTimeout(() => {
+                    messageBox.classList.add('hidden');
+                }, 10000);
+
+            }, 1500);
+
+            // Important Note for User: For a true notification system, you would typically 
+            // integrate a free service like Formspree, a Google Sheet endpoint, or a cloud function.
+            // Since this is a pure static HTML file, the data is not truly sent anywhere. 
+            // You should implement email forwarding from your domain to capture these submissions.
+        });
+    </script>
+</body>
+</html>
