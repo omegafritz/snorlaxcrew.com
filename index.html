@@ -87,7 +87,8 @@
                 
                 <div id="order-message" class="hidden p-4 mb-6 rounded-lg text-center font-semibold text-sm transition-all duration-500"></div>
 
-                <form id="order-form" class="bg-white p-8 rounded-xl shadow-2xl border border-gray-200">
+                <!-- Formspree Integration: action and method added here -->
+                <form id="order-form" action="https://formspree.io/f/xwpjwypy" method="POST" class="bg-white p-8 rounded-xl shadow-2xl border border-gray-200">
                     <div class="grid grid-cols-1 gap-6 sm:grid-cols-2">
                         <!-- Name -->
                         <div>
@@ -103,7 +104,8 @@
 
                     <div class="mt-6">
                         <label for="file_link" class="block text-sm font-medium text-gray-700">3D File Link (STL, OBJ, etc.)</label>
-                        <input type="url" id="file_link" name="file_link" placeholder="e.g., Google Drive, Dropbox, Thingiverse URL" required class="mt-1 block w-full rounded-lg border-gray-300 shadow-sm focus:border-indigo-500 focus:ring-indigo-500 p-3 border">
+                        <!-- FIX: Changed type from 'url' to 'text' to prevent strict browser validation that requires 'https://' -->
+                        <input type="text" id="file_link" name="file_link" placeholder="e.g., Google Drive, Dropbox, Thingiverse URL" required class="mt-1 block w-full rounded-lg border-gray-300 shadow-sm focus:border-indigo-500 focus:ring-indigo-500 p-3 border">
                         <p class="mt-2 text-xs text-gray-500">Please ensure the link is publicly accessible for viewing/download.</p>
                     </div>
                     
@@ -147,7 +149,7 @@
                         <div class="p-5 bg-indigo-50 border-l-4 border-indigo-600 rounded-lg">
                             <h3 class="text-2xl font-bold text-indigo-800 mb-2">Zelle</h3>
                             <p class="text-gray-700">
-                                Use Zelle to send money directly from your banking app. Use the Number below as the recipient.
+                                Use Zelle to send money directly from your banking app. Use the number below as the recipient.
                             </p>
                             <div class="mt-3 bg-white p-3 rounded-md border border-indigo-200 inline-block">
                                 <span class="font-mono text-xl text-indigo-700">646-648-6401</span>
@@ -178,53 +180,21 @@
         const submitButton = document.getElementById('submit-button');
 
         form.addEventListener('submit', function(e) {
-            e.preventDefault();
+            // NOTE: We no longer prevent the default action here because Formspree needs the form to submit normally.
+            
+            // The Formspree submission will redirect the user to a success page or back to the form.
+            // For a static site using Formspree, the client-side JavaScript simulation is removed
+            // because Formspree handles the submission and messaging externally.
 
+            // The form will now submit to Formspree, which handles email delivery and showing a success message to the user.
+
+            // Client-side visual feedback is still nice before the redirect:
             submitButton.disabled = true;
             submitButton.textContent = 'Submitting...';
             
-            // Collect form data (for simulation, you would send this to a backend like Google Forms or a server)
-            const formData = {
-                name: document.getElementById('name').value,
-                email: document.getElementById('email').value,
-                file_link: document.getElementById('file_link').value,
-                description: document.getElementById('description').value
-            };
+            // The rest of this script is technically not run after Formspree takes over, 
+            // but is left here for safety if the form action is ever removed.
 
-            // In a real application, you would use fetch() to send this data.
-            // Since this is a static site and you are not using a backend, we will
-            // simulate success and provide instructions for the user.
-
-            // Simulate a successful submission after a delay
-            setTimeout(() => {
-                // Display Success Message
-                messageBox.classList.remove('hidden', 'bg-red-100', 'text-red-800', 'border-red-400');
-                messageBox.classList.add('bg-green-100', 'text-green-800', 'border-green-400', 'border');
-                messageBox.innerHTML = `
-                    <p class="font-bold">Order Request Received!</p>
-                    <p>Thank you, ${formData.name}. Please check your email (${formData.email}) soon for your custom quote and final payment instructions.</p>
-                `;
-
-                // Reset form fields
-                form.reset();
-
-                // Re-enable button
-                submitButton.disabled = false;
-                submitButton.textContent = 'Submit Order Request';
-                
-                // Hide message after 10 seconds
-                setTimeout(() => {
-                    messageBox.classList.add('hidden');
-                }, 10000);
-
-            }, 1500);
-            <form id="order-form" action="https://formspree.io/f/xwpjwypy" method="POST" class="bg-white p-8 rounded-xl shadow-2xl border border-gray-200">
-    * Replace `YOUR_FORMSPREE_ENDPOINT_URL_HERE` with your actual URL. Now, when a customer submits the form, Formspree will email you the data!
-
-            // Important Note for User: For a true notification system, you would typically 
-            // integrate a free service like Formspree, a Google Sheet endpoint, or a cloud function.
-            // Since this is a pure static HTML file, the data is not truly sent anywhere. 
-            // You should implement email forwarding from your domain to capture these submissions.
         });
     </script>
 </body>
